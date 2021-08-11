@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo app</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+    <div style="background-color:gray;">
+    <div style="margin-top:20px;background-color:aqua;" class="ui container">
+    <center><img src="{{ user_image }}"></center>
+    <h1  class="ui center aligned header">Todo App-FOR AMRUTAM PHARMACEUTICALS.<sub>by-(AhamedAsik)</sub> </h1>
+    <form class="ui form" action="/add" method="post">
+        <div class="field">
+            <label for="title">Todo- ADD OUR PRODUCT NAMES </label>
+            <input type="text" name="title" placeholder="Enter todo...">
+            <br>
+            <button class="ui blue button" type="submit">ADD TO CART </button>
+        </div>
+    </form>
+    {% for todo in todo_list %}
+    <div class="ui segment">
+        <p class="ui large header"> {{ todo.id }} | {{ todo.title }} </p>
+        {% if todo.complete == True %}
+            <span class="ui green label">IN STOCK</span>
+        {% else %}
+            <span class="ui gray label">OUT OF STOCK</span>
+        {% endif %}
+
+        <a class="ui blue button" href="/update/{{ todo.id }}">UPDATE THE ITEM</a>
+        <a class="ui red button" href="/delete/{{ todo.id }}">DELETE FROM CART LIST</a>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
+</body>
+</html>
